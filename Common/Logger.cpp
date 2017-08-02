@@ -23,6 +23,7 @@
 */
 
 #include "pch.h"
+#if 0
 #include "Logger.h"
 #include "Util.h"
 #include <windows.storage.h>
@@ -63,3 +64,4 @@ void Logger::Log(ILogger::LogLevel logLevel, const char* str) const
 	// Append console logs to file
 	create_task(FileIO::AppendTextAsync(m_file, pstr + "\r\n")).wait();
 }
+#endif

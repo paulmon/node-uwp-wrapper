@@ -129,12 +129,12 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(NODE_DIR)\src;$(NODE_DIR)\deps\zlib;$(NODE_DIR)\deps\zlib\contrib\minizip;$(NODE_DIR)\deps\chakrashim\include;$(NODE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(NODE_CHAKRACORE_DIR)\src;$(NODE_CHAKRACORE_DIR)\deps\zlib;$(NODE_CHAKRACORE_DIR)\deps\zlib\contrib\minizip;$(NODE_CHAKRACORE_DIR)\deps\chakrashim\include;$(NODE_CHAKRACORE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;node.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(NODE_DIR)\$(Configuration);$(NODE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(NODE_CHAKRACORE_DIR)\$(Configuration);$(NODE_CHAKRACORE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -146,14 +146,14 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(NODE_DIR)\src;$(NODE_DIR)\deps\zlib;$(NODE_DIR)\deps\zlib\contrib\minizip;$(NODE_DIR)\deps\chakrashim\include;$(NODE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(NODE_CHAKRACORE_DIR)\src;$(NODE_CHAKRACORE_DIR)\deps\zlib;$(NODE_CHAKRACORE_DIR)\deps\zlib\contrib\minizip;$(NODE_CHAKRACORE_DIR)\deps\chakrashim\include;$(NODE_CHAKRACORE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;node.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(NODE_DIR)\$(Configuration);$(NODE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(NODE_CHAKRACORE_DIR)\$(Configuration);$(NODE_CHAKRACORE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreSpecificDefaultLibraries>
       </IgnoreSpecificDefaultLibraries>
     </Link>
@@ -171,13 +171,13 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(NODE_DIR)\src;$(NODE_DIR)\deps\zlib;$(NODE_DIR)\deps\zlib\contrib\minizip;$(NODE_DIR)\deps\chakrashim\include;$(NODE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(NODE_CHAKRACORE_DIR)\src;$(NODE_CHAKRACORE_DIR)\deps\zlib;$(NODE_CHAKRACORE_DIR)\deps\zlib\contrib\minizip;$(NODE_CHAKRACORE_DIR)\deps\chakrashim\include;$(NODE_CHAKRACORE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;node.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(NODE_DIR)\$(Configuration);$(NODE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(NODE_CHAKRACORE_DIR)\$(Configuration);$(NODE_CHAKRACORE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
@@ -189,13 +189,13 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(NODE_DIR)\src;$(NODE_DIR)\deps\zlib;$(NODE_DIR)\deps\zlib\contrib\minizip;$(NODE_DIR)\deps\chakrashim\include;$(NODE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(NODE_CHAKRACORE_DIR)\src;$(NODE_CHAKRACORE_DIR)\deps\zlib;$(NODE_CHAKRACORE_DIR)\deps\zlib\contrib\minizip;$(NODE_CHAKRACORE_DIR)\deps\chakrashim\include;$(NODE_CHAKRACORE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;node.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(NODE_DIR)\$(Configuration);$(NODE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(NODE_CHAKRACORE_DIR)\$(Configuration);$(NODE_CHAKRACORE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -207,13 +207,13 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(NODE_DIR)\src;$(NODE_DIR)\deps\zlib;$(NODE_DIR)\deps\zlib\contrib\minizip;$(NODE_DIR)\deps\chakrashim\include;$(NODE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(NODE_CHAKRACORE_DIR)\src;$(NODE_CHAKRACORE_DIR)\deps\zlib;$(NODE_CHAKRACORE_DIR)\deps\zlib\contrib\minizip;$(NODE_CHAKRACORE_DIR)\deps\chakrashim\include;$(NODE_CHAKRACORE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;node.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(NODE_DIR)\$(Configuration);$(NODE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(NODE_CHAKRACORE_DIR)\$(Configuration);$(NODE_CHAKRACORE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -225,13 +225,13 @@
       <AdditionalUsingDirectories>$(WindowsSDK_WindowsMetadata);$(AdditionalUsingDirectories)</AdditionalUsingDirectories>
       <AdditionalOptions>/bigobj %(AdditionalOptions)</AdditionalOptions>
       <DisableSpecificWarnings>28204</DisableSpecificWarnings>
-      <AdditionalIncludeDirectories>$(NODE_DIR)\src;$(NODE_DIR)\deps\zlib;$(NODE_DIR)\deps\zlib\contrib\minizip;$(NODE_DIR)\deps\chakrashim\include;$(NODE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(NODE_CHAKRACORE_DIR)\src;$(NODE_CHAKRACORE_DIR)\deps\zlib;$(NODE_CHAKRACORE_DIR)\deps\zlib\contrib\minizip;$(NODE_CHAKRACORE_DIR)\deps\chakrashim\include;$(NODE_CHAKRACORE_DIR)\deps\logger\include;..\..\Common;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalDependencies>runtimeobject.lib;node.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
-      <AdditionalLibraryDirectories>$(NODE_DIR)\$(Configuration);$(NODE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(NODE_CHAKRACORE_DIR)\$(Configuration);$(NODE_CHAKRACORE_DIR)\$(Configuration)\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -266,7 +266,7 @@
     <ClCompile Include="StartupTask.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(NODE_DIR)\$(Configuration)\node.dll">
+    <None Include="$(NODE_CHAKRACORE_DIR)\$(Configuration)\node.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
     <None Include="nodeuwp_TemporaryKey.pfx" />
