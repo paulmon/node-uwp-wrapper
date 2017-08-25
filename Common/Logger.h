@@ -24,7 +24,6 @@
 
 #pragma once
 
-#if 0
 #include <windows.h>
 #include "ILogger.h"
 #include <windows.storage.h>
@@ -49,4 +48,3 @@ private:
 	static mutex m_mutex;
 	static once_flag m_onceflag;
 };
-#endif

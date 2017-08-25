@@ -32,7 +32,7 @@ using namespace std;
 using namespace std::tr2::sys;
 using namespace Windows::Data::Xml::Dom;
 using namespace concurrency;
-//using namespace node::logger;
+using namespace node::logger;
 using namespace nodeuwputil;
 
 // If --use-logger argument is passed to to Node, console.* methods will redirect
@@ -132,9 +132,9 @@ void MainPage::Run()
 			else
 			{
 				String^ logFileName = "nodeuwp.log";
-                exitCode = node::Start(argc, argv.get()); // , &Logger::GetInstance(logFileName));
+				exitCode = node::Start(argc, argv.get(), &Logger::GetInstance(logFileName));
 				string exitMsg = "Exit Code: " + std::to_string(exitCode);
-				//Logger::GetInstance(logFileName).Log(ILogger::LogLevel::Info, exitMsg.c_str());
+				Logger::GetInstance(logFileName).Log(ILogger::LogLevel::Info, exitMsg.c_str());
 			}
 			App::Current->Exit();
 		}, task_continuation_context::use_arbitrary());

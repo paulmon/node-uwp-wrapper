@@ -128,7 +128,7 @@ void StartupTask::Run(IBackgroundTaskInstance^ taskInstance)
 			}
 			else
 			{
-                exitCode = node::Start(argc, argv.get()); // , &Logger::GetInstance("nodeuwp.log"));
+				exitCode = node::Start(argc, argv.get(), &Logger::GetInstance("nodeuwp.log"));
 			}
 
 			deferral->Complete();
