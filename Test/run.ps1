@@ -36,7 +36,7 @@
 # </NodeTestInfo>
 
 # UseFolders:
-#     Value can be 'true' or 'false' 
+#     Value can be 'true' or 'false'
 #     If true, then the tests run will be the list of scripts in the
 #     <Files> element. Scripts should be separated by a white-space character.
 #     If false, then the tests in the folders specified in the <Folders>
@@ -61,7 +61,7 @@
 
 # In the example above, since UseFolders is false, the test-assert and test-buffer
 # will be run. If UserFolders is true, then all tests in the 'test\parallel' folder
-# will be run. Any script that matches a string in the Unsupported element will be 
+# will be run. Any script that matches a string in the Unsupported element will be
 # skipped.
 
 
@@ -102,12 +102,18 @@
 
 
 #Requires -RunAsAdministrator
-
+[CmdletBinding()]
 param (
   [string]$app,
   [string]$test,
-  [string]$appl
+  [string]$appl,
+  [switch]$skiptests
 )
+
+If ($PSBoundParameters['Debug']) {
+  $DebugPreference = 'Continue'
+}
+$ErrorActionPreference = "Stop"
 
 function Print-Usage {
   Write-Host "USAGE:"
@@ -142,14 +148,15 @@ $cerFileName = Get-Childitem -path $appxFolderPath -filter *.cer
 $certPath = $appxFolderPath + $cerFileName
 Import-Certificate -FilePath $certPath -CertStoreLocation cert:\LocalMachine\TrustedPeople
 
-
-# Install appx
-$packageName = Get-AppxPackage -Name nodeuwpui* | Select Name, PackageFullName
-If ([string]::IsNullOrWhitespace($packageName)) {
-  # Uninstall first if it's installed already
-  $appxFileName = Get-Childitem -path $appxFolderPath -filter *.appx
-  $appxPath = $appxFolderPath + $appxFileName
-  Add-AppxPackage $appxPath
+if (!$skiptests){
+  # Install appx
+  $packageName = Get-AppxPackage -Name nodeuwpui* | Select Name, PackageFullName
+  If ([string]::IsNullOrWhitespace($packageName)) {
+    # Uninstall first if it's installed already
+    $appxFileName = Get-Childitem -path $appxFolderPath -filter *.appx
+    $appxPath = $appxFolderPath + $appxFileName
+    Add-AppxPackage $appxPath
+  }
 }
 
 $package = Get-AppxPackage -Name nodeuwpui*
@@ -158,6 +165,11 @@ $package = Get-AppxPackage -Name nodeuwpui*
 $appStoragePath = $env:LOCALAPPDATA + "\Packages\" + $package.PackageFamilyName + "\LocalState\"
 Copy-Item -Path $testSrcPath -Destination $appStoragePath -Recurse -Force
 
+# Name of log file needs to match log file name used by the app
+$resultsFile = [io.path]::combine($appStoragePath, "nodeuwp.log")
+Write-Host "resultsFile = $resultsFile"
+
+if ($skiptests){ return; }
 
 $docsFolder = [environment]::getfolderpath("mydocuments")
 $startupinfoFileName = "\package.json"
@@ -168,9 +180,6 @@ $testInfoPath = $docsFolder + "\" + $testInfoFileName
 [xml]$testInfo = Get-Content $testInfoPath
 
 $useFolders = $TRUE
-
-# Name of log file needs to match log file name used by the app
-$resultsFile = $appStoragePath + "\nodeuwp.log"
 
 function Log-Message {
 Param ($msg)
@@ -186,11 +195,12 @@ Param ($t, $f)
 
 function Run-Tests {
 Param ($ta, $fol)
+
   $i = 1
   $testCount = $ta.Count
   $testsRun
   Log-Message -msg "Test count = [$testCount]"
-  
+
   $unsupportedTests = $testInfo.NodeTestInfo.Unsupported.split()| where {$_}
 
   Foreach($t in $ta) {
@@ -206,29 +216,29 @@ Param ($ta, $fol)
     if($next) {
       continue
     }
-    
+
     Log-Message -msg "$i  - Start Test: $t"
 
     $testPath = $docsFolder + $startupinfoFileName
-    
+
     Save-StartupInfo -t $t -f $testPath
-    
+
     $appName = ($package.PackageFamilyName + "!App")
-    
+
     $args = "/appid", $appName
     Start-Process -FilePath $appLauncherPath -ArgumentList $args -Wait
-    
+
     # Wait for app to exit
     $processName = "nodeuwpui"
     $process = Get-Process $processName -ErrorAction SilentlyContinue
     if ($process) {
       Wait-Process -Name $processName -Timeout 60
     }
-    
+
     Log-Message -msg "End Test"
     $i++
   }
-  
+
   $testsRun = $i - 1
   $resultsStr = Get-Content $resultsFile
   $testsPassed = ([regex]::Matches($resultsStr, "Exit Code: 0" )).count
@@ -257,33 +267,36 @@ if(-Not $useFolders) {
   Delete-Log
   $tests = $testInfo.NodeTestInfo.Files.split()| where {$_}
   Run-Tests -ta $tests
-  
+
   # Copy log file to script location
   Copy-Item -Path $resultsFile -Destination ($PSScriptRoot + "\results.log") -Force
 }
 
 if($useFolders) {
   $folders = $testInfo.NodeTestInfo.Folders.split()| where {$_}
-  
+
   Foreach($f in $folders) {
     Delete-Log
     $fullFolderPath = $appStoragePath + "test\" + $f;
     $tests = Get-Childitem -path $fullfolderpath -filter *.js
-    
+
     # Make test follow format "test\<test category>\<js file>"
     for ($i=0; $i -lt $tests.Count; $i++) {
       $tests[$i] = "test\" + $f + "\" + $tests[$i]
     }
 
     Run-Tests -ta $tests -fol $f
-    
+
     # Copy log file to script location
     Copy-Item -Path $resultsFile -Destination ($PSScriptRoot + "\results_" + $f + ".log") -Force
   }
 }
 
 # Clean up
-Remove-AppxPackage $package.PackageFullName
+if (!$skiptests)
+{
+  Remove-AppxPackage $package.PackageFullName
+}
 #TODO: Uninstall cert as well
 
 

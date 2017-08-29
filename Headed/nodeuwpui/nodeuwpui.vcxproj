@@ -237,6 +237,9 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
+    <None Include="$(NODE_CHAKRACORE_DIR)\$(Configuration)\chakracore.dll">
+      <DeploymentContent>true</DeploymentContent>
+    </None>
     <None Include="$(NODE_CHAKRACORE_DIR)\$(Configuration)\node.dll">
       <DeploymentContent>true</DeploymentContent>
     </None>
